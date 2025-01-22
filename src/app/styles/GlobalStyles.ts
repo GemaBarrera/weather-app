@@ -9,7 +9,7 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #ededed;
     color: #333;
     display: flex;
     justify-content: center;
