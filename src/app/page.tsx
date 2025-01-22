@@ -1,12 +1,61 @@
 "use client";
 
-import React, { useState } from "react";
-import SearchBar from "./components/SearchBar";
+import { useState } from "react";
+import {
+  ErrorMessage,
+  ForecastDisplay,
+  SearchBar,
+  WeatherDisplay,
+} from "./components";
 import { GlobalStyles } from "./styles/GlobalStyles";
 
+interface WeatherState {
+  temperature: number;
+  maxTemperature: number;
+  minTemperature: number;
+  humidity: number;
+  description: string;
+  icon: string;
+}
+
+interface ForecastItem {
+  day: string;
+  temperature: number;
+  description: string;
+  icon: string;
+}
+
+interface CurrentWeatherAPIResponse {
+  main: {
+    temp: number;
+    temp_max: number;
+    temp_min: number;
+    humidity: number;
+  };
+  weather: {
+    description: string;
+    icon: string;
+  }[];
+}
+
+interface ForecastAPIResponse {
+  list: {
+    dt: number;
+    dt_txt: string;
+    main: {
+      temp: number;
+    };
+    weather: {
+      description: string;
+      icon: string;
+    }[];
+  }[];
+}
+
 export default function Home() {
-  const [weather, setWeather] = useState<any>(null);
-  const [forecast, setForecast] = useState<any[]>([]);
+  const [weather, setWeather] = useState<WeatherState | null>(null);
+  const [forecast, setForecast] = useState<ForecastItem[]>([]);
+  const [error, setError] = useState<string>("");
 
   const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY;
 
@@ -26,7 +75,7 @@ export default function Home() {
         }
       }
 
-      const data = await response.json();
+      const data: CurrentWeatherAPIResponse = await response.json();
       setWeather({
         temperature: data.main.temp,
         maxTemperature: data.main.temp_max,
@@ -44,11 +93,11 @@ export default function Home() {
         throw new Error("Error al obtener el pronóstico. Inténtalo de nuevo.");
       }
 
-      const forecastData = await forecastResponse.json();
+      const forecastData: ForecastAPIResponse = await forecastResponse.json();
       const dailyForecast = forecastData.list
-        .filter((item: any) => item.dt_txt.includes("12:00:00"))
+        .filter((item) => item.dt_txt.includes("12:00:00"))
         .slice(0, 3)
-        .map((item: any) => ({
+        .map((item) => ({
           day: new Date(item.dt * 1000).toLocaleDateString("es-ES", {
             weekday: "long",
           }),
@@ -58,9 +107,12 @@ export default function Home() {
         }));
 
       setForecast(dailyForecast);
-    } catch (error: any) {
-      console.error(error.message);
-      alert(error.message);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setError(error.message);
+      } else {
+        setError("Ha ocurrido un error desconocido.");
+      }
     }
   };
 
@@ -69,6 +121,18 @@ export default function Home() {
       <GlobalStyles />
       <div style={{ width: "80%" }}>
         <SearchBar onSearch={fetchWeather} />
+        {weather && (
+          <WeatherDisplay
+            temperature={weather.temperature}
+            maxTemperature={weather.maxTemperature}
+            minTemperature={weather.minTemperature}
+            humidity={weather.humidity}
+            description={weather.description}
+            icon={weather.icon}
+          />
+        )}
+        {forecast.length > 0 && <ForecastDisplay forecast={forecast} />}
+        {error != "" && <ErrorMessage message={error} />}
       </div>
     </>
   );

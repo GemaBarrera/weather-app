@@ -112,7 +112,8 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
   const handleSuggestionClick = (city: string) => {
     setQuery(city);
     setSelectedCity(city);
-    setSuggestions([]); // Ocultar sugerencias al seleccionar
+    // Hide suggestion on select
+    setSuggestions([]);
   };
 
   const handleSearch = () => {
