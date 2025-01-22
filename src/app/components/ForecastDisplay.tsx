@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
-  background: white;
+  justify-content: space-around;
+  background: #0d2242;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -17,16 +16,27 @@ const Container = styled.div`
 
 const Day = styled.div`
   text-align: center;
+  margin-top: 10px;
 
   h3 {
+    color: #50a4ad;
     font-size: 18px;
     margin-bottom: 5px;
   }
 
   p {
+    color: #f0f0f0;
     font-size: 16px;
-    margin: 0;
+    margin: 0 10px 0;
   }
+
+  #min {
+    opacity: 0.6;
+  }
+`;
+
+const DayDetails = styled.div`
+  display: flex;
 `;
 
 const WeatherIcon = styled.img`
@@ -36,7 +46,8 @@ const WeatherIcon = styled.img`
 
 interface ForecastDay {
   day: string;
-  temperature: number;
+  maxTemperature: number;
+  minTemperature: number;
   description: string;
   icon: string;
 }
@@ -46,20 +57,19 @@ interface ForecastDisplayProps {
 }
 
 const ForecastDisplay: React.FC<ForecastDisplayProps> = ({ forecast }) => {
-  useEffect(() => {
-    console.log(forecast);
-  }, []);
   return (
     <Container>
       {forecast.map((day, index) => (
-        <Day key={index}>
-          <h3>{day.day}</h3>
+        <Day key={`day-${index}`}>
           <WeatherIcon
             src={`http://openweathermap.org/img/wn/${day.icon}@2x.png`}
-            alt="Weather Icon"
+            alt={day.description}
           />
-          <p>{Math.round(day.temperature)}°C</p>
-          <p>{day.description}</p>
+          <h3>{day.day}</h3>
+          <DayDetails>
+            <p>{Math.round(day.maxTemperature)}°</p>
+            <p id="min">{Math.round(day.minTemperature)}°</p>
+          </DayDetails>
         </Day>
       ))}
     </Container>

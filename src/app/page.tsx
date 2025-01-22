@@ -29,7 +29,8 @@ interface WeatherState {
 
 interface ForecastItem {
   day: string;
-  temperature: number;
+  maxTemperature: number;
+  minTemperature: number;
   description: string;
   icon: string;
 }
@@ -54,6 +55,8 @@ interface ForecastAPIResponse {
     dt_txt: string;
     main: {
       temp: number;
+      temp_max: number;
+      temp_min: number;
     };
     weather: {
       description: string;
@@ -105,17 +108,44 @@ export default function Home() {
       }
 
       const forecastData: ForecastAPIResponse = await forecastResponse.json();
-      const dailyForecast = forecastData.list
-        .filter((item) => item.dt_txt.includes("12:00:00"))
+
+      // Group data by date
+      const groupedByDay: Record<string, { temp: number }[]> =
+        forecastData.list.reduce((acc, item) => {
+          // Get date (YYYY-MM-DD)
+          const date = item.dt_txt.split(" ")[0];
+          if (!acc[date]) {
+            acc[date] = [];
+          }
+          acc[date].push(item.main);
+          return acc;
+        }, {} as Record<string, { temp: number }[]>);
+
+      // Calculate max and min by day
+      const dailyForecast = Object.entries(groupedByDay)
         .slice(0, 3)
-        .map((item) => ({
-          day: new Date(item.dt * 1000).toLocaleDateString("es-ES", {
-            weekday: "long",
-          }),
-          temperature: item.main.temp,
-          description: item.weather[0].description,
-          icon: item.weather[0].icon,
-        }));
+        .map(([date, temps]) => {
+          const temperatures = temps.map((t) => t.temp);
+          const maxTemperature = Math.max(...temperatures);
+          const minTemperature = Math.min(...temperatures);
+
+          // Find exact or nearest interval to 12:00:00
+          const middayData = forecastData.list.find(
+            (item) =>
+              item.dt_txt.includes(date) &&
+              (item.dt_txt.includes("12:00:00") || true)
+          );
+
+          return {
+            day: new Date(date).toLocaleDateString("es-ES", {
+              weekday: "long",
+            }),
+            maxTemperature,
+            minTemperature,
+            description: middayData?.weather[0].description || "",
+            icon: middayData?.weather[0].icon || "",
+          };
+        });
 
       setForecast(dailyForecast);
     } catch (error: unknown) {
