@@ -17,6 +17,21 @@ export const GlobalStyles = createGlobalStyle`
     min-height: 100vh;
   }
 
+  h1 {
+    font-weight: 500;
+  }
+
+  h2 {
+  font-size: 20px;
+    color: white;
+    letter-spacing: 0.5px;
+    font-weight: 600px;
+  }
+
+  p {
+    fot-size: 16px;
+  }
+
   @media (max-width: 768px) {
     body {
       padding: 20px;

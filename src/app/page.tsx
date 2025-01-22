@@ -1,5 +1,6 @@
 "use client";
 
+import styled from "styled-components";
 import { useState } from "react";
 import {
   ErrorMessage,
@@ -9,7 +10,15 @@ import {
 } from "./components";
 import { GlobalStyles } from "./styles/GlobalStyles";
 
+const ToolContainer = styled.div`
+  width: 80%;
+  max-width: 600px;
+  height: 100vh;
+  margin-top: 60px;
+`;
+
 interface WeatherState {
+  name: string;
   temperature: number;
   maxTemperature: number;
   minTemperature: number;
@@ -26,6 +35,7 @@ interface ForecastItem {
 }
 
 interface CurrentWeatherAPIResponse {
+  name: string;
   main: {
     temp: number;
     temp_max: number;
@@ -77,6 +87,7 @@ export default function Home() {
 
       const data: CurrentWeatherAPIResponse = await response.json();
       setWeather({
+        name: data.name,
         temperature: data.main.temp,
         maxTemperature: data.main.temp_max,
         minTemperature: data.main.temp_min,
@@ -119,10 +130,11 @@ export default function Home() {
   return (
     <>
       <GlobalStyles />
-      <div style={{ width: "80%" }}>
+      <ToolContainer style={{ width: "80%", maxWidth: "600px" }}>
         <SearchBar onSearch={fetchWeather} />
         {weather && (
           <WeatherDisplay
+            city={weather.name}
             temperature={weather.temperature}
             maxTemperature={weather.maxTemperature}
             minTemperature={weather.minTemperature}
@@ -132,8 +144,8 @@ export default function Home() {
           />
         )}
         {forecast.length > 0 && <ForecastDisplay forecast={forecast} />}
-        {error != "" && <ErrorMessage message={error} />}
-      </div>
+        {error !== "" && <ErrorMessage message={error} />}
+      </ToolContainer>
     </>
   );
 }
