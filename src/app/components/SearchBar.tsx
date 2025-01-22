@@ -130,6 +130,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
           placeholder="Escribe una ciudad..."
           value={query}
           onChange={handleInputChange}
+          onClick={() => setQuery("")}
         />
         <Button onClick={handleSearch} disabled={!query.trim()}>
           Buscar
