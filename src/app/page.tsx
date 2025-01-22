@@ -130,7 +130,7 @@ export default function Home() {
   return (
     <>
       <GlobalStyles />
-      <ToolContainer style={{ width: "80%", maxWidth: "600px" }}>
+      <ToolContainer>
         <SearchBar onSearch={fetchWeather} />
         {weather && (
           <WeatherDisplay
