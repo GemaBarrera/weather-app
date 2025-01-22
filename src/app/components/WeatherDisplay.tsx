@@ -91,7 +91,7 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
         <WeatherDetails>
           <p>{Math.round(maxTemperature)}°</p>
           <p id="min">{Math.round(minTemperature)}°</p>
-          <p id="humidity">Humidity: {humidity}%</p>
+          <p id="humidity">Humedad: {humidity}%</p>
         </WeatherDetails>
       </TemperatureWrapper>
       <IconWrapper>

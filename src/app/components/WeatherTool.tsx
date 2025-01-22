@@ -70,6 +70,11 @@ const WeatherTool: React.FC = () => {
   const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY;
 
   const fetchWeather = async (city: string) => {
+    // Reset values for a new search
+    setWeather(null);
+    setForecast([]);
+    setError("");
+    await new Promise((resolve) => setTimeout(resolve, 3000));
     try {
       const response = await fetch(
         `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
