@@ -80,7 +80,7 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
   description,
   icon,
 }) => {
-  const iconUrl = `http://openweathermap.org/img/wn/${icon}@2x.png`;
+  const iconUrl = `http://openweathermap.org/img/wn/${icon}@4x.png`;
 
   return (
     <Container>
