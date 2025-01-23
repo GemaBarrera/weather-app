@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { FavoritesProvider } from "../../../context/FavoritesContext";
+import { FavoritesProvider } from "../../../../context/FavoritesContext";
 import WeatherDisplay from "../WeatherDisplay";
 
 describe("WeatherDisplay Component", () => {

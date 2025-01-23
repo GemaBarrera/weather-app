@@ -3,8 +3,8 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { WeatherDisplay } from "../components";
-import useFetchWeather from "../hooks/useFetchWeather";
-import theme from "../styles/theme";
+import useFetchWeather from "../../hooks/useFetchWeather";
+import theme from "../../styles/theme";
 
 const Card = styled.div<{ $isVisible: boolean }>`
   margin: "auto";

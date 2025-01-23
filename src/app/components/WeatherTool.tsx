@@ -8,7 +8,7 @@ import {
   WeatherDisplay,
 } from "../components";
 
-import useFetchWeather from "../hooks/useFetchWeather";
+import useFetchWeather from "../../hooks/useFetchWeather";
 
 const ToolContainer = styled.div`
   width: 100%;

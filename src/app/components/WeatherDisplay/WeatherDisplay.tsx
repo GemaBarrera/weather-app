@@ -2,7 +2,7 @@
 
 import { useCallback } from "react";
 import { FavoriteIcon } from "..";
-import { useFavorites } from "../../context/FavoritesContext";
+import { useFavorites } from "../../../context/FavoritesContext";
 import {
   City,
   Container,

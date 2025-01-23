@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useFavorites } from "../context/FavoritesContext";
-import useWeather from "../hooks/useFetchWeather";
+import { useFavorites } from "../../context/FavoritesContext";
+import useWeather from "../../hooks/useFetchWeather";
 import FavoriteCard from "./FavoriteCard";
 import {
   CardWrapper,
