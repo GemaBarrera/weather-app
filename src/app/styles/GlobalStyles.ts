@@ -1,3 +1,5 @@
+'use client'
+
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
@@ -22,7 +24,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   h2 {
-  font-size: 20px;
+    font-size: 20px;
     color: white;
     letter-spacing: 0.5px;
     font-weight: 600px;
@@ -32,9 +34,5 @@ export const GlobalStyles = createGlobalStyle`
     fot-size: 16px;
   }
 
-  @media (max-width: 768px) {
-    body {
-      padding: 20px;
-    }
-  }
+
 `;
