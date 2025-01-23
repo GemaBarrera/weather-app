@@ -1,71 +1,15 @@
-import styled from "styled-components";
-import { useFavorites } from "../context/FavoritesContext";
-import { FavoriteIcon } from "../components";
-
-const Container = styled.div`
-  position: relative;
-  display: flex;
-  width: 100%;
-  background-color: #0d2242;
-  padding: 30px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    align-items: center;
-  }
-`;
-
-const TemperatureWrapper = styled.div`
-  width: 50%;
-  text-align: left;
-`;
-
-const IconWrapper = styled.div`
-  display: flex;
-  width: 50%;
-  align-items: center;
-  justify-content: flex-end;
-`;
-
-const Day = styled.h3`
-  color: #f0f0f0;
-  font-weight: lighter;
-`;
-
-const City = styled.h2`
-  color: #50a4ad;
-`;
-
-const Temperature = styled.h1`
-  font-size: 64px;
-  color: #f0f0f0;
-  margin: 0;
-`;
-
-const WeatherDetails = styled.div`
-  display: flex;
-  margin-top: 10px;
-  color: #f0f0f0;
-
-  p {
-    margin: 6px 10px 6px 0;
-  }
-
-  #min {
-    opacity: 0.6;
-  }
-
-  #humidity {
-    color: #4e85b0;
-  }
-`;
-
-const WeatherIcon = styled.img`
-  width: 160px;
-`;
+import { FavoriteIcon } from "..";
+import { useFavorites } from "../../context/FavoritesContext";
+import {
+  City,
+  Container,
+  Day,
+  IconWrapper,
+  Temperature,
+  TemperatureWrapper,
+  WeatherDetails,
+  WeatherIcon,
+} from "./WeatherDisplayStyles";
 
 interface WeatherDisplayProps {
   city: string;

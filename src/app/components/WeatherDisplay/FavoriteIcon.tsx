@@ -1,5 +1,5 @@
 import React from "react";
-import { AiOutlineStar, AiFillStar } from "react-icons/ai";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import styled from "styled-components";
 
 const StarIcon = styled.div<{ $isFavorite: boolean }>`
