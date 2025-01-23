@@ -46,15 +46,21 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
   };
 
   return (
-    <Container>
+    <Container data-testid="weather-display">
       <TemperatureWrapper>
-        <Temperature>{Math.round(temperature)}°</Temperature>
-        <City>{city}</City>
+        <Temperature data-testid="temperature">
+          {Math.round(temperature)}°
+        </Temperature>
+        <City data-testid="city">{city}</City>
         <Day>Hoy</Day>
         <WeatherDetails>
-          <p>{Math.round(maxTemperature)}°</p>
-          <p id="min">{Math.round(minTemperature)}°</p>
-          <p id="humidity">Humidity: {humidity}%</p>
+          <p data-testid="max-temp">{Math.round(maxTemperature)}°</p>
+          <p id="min" data-testid="min-temp">
+            {Math.round(minTemperature)}°
+          </p>
+          <p id="humidity" data-testid="humidity">
+            Humidity: {humidity}%
+          </p>
         </WeatherDetails>
       </TemperatureWrapper>
       <IconWrapper>

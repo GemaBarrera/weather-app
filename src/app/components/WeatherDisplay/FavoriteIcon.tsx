@@ -27,7 +27,7 @@ const FavoriteIcon: React.FC<FavoriteIconProps> = ({
   onToggle,
 }) => {
   return (
-    <StarIcon $isFavorite={isFavorite} onClick={onToggle}>
+    <StarIcon $isFavorite={isFavorite} onClick={onToggle} role="button">
       {isFavorite ? <AiFillStar /> : <AiOutlineStar />}
     </StarIcon>
   );
