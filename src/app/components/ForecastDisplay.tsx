@@ -7,6 +7,7 @@ const Container = styled.div`
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 10px;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -40,8 +41,8 @@ const DayDetails = styled.div`
 `;
 
 const WeatherIcon = styled.img`
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
 `;
 
 interface ForecastDay {
