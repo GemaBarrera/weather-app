@@ -25,6 +25,26 @@ interface UseWeatherReturn {
   fetchWeather: (city: string) => Promise<void>;
 }
 
+interface CurrentWeatherAPIResponse {
+  name: string;
+  main: {
+    temp: number;
+    temp_max: number;
+    temp_min: number;
+    humidity: number;
+  };
+  weather: { description: string; icon: string }[];
+}
+
+interface ForecastAPIResponse {
+  list: {
+    dt: number;
+    dt_txt: string;
+    main: { temp: number };
+    weather: { description: string; icon: string }[];
+  }[];
+}
+
 const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY;
 
 const useWeather = (): UseWeatherReturn => {
@@ -45,15 +65,13 @@ const useWeather = (): UseWeatherReturn => {
 
         if (!response.ok) {
           if (response.status === 404) {
-            throw new Error(
-              "Ciudad no encontrada. Por favor, verifica el nombre."
-            );
+            throw new Error("City not found. Please, verify the name.");
           } else {
-            throw new Error("Error al obtener el clima. Inténtalo de nuevo.");
+            throw new Error("Error getting the weather. Please, try again.");
           }
         }
 
-        const data = await response.json();
+        const data: CurrentWeatherAPIResponse = await response.json();
         setWeather({
           name: data.name,
           temperature: data.main.temp,
@@ -69,12 +87,10 @@ const useWeather = (): UseWeatherReturn => {
         );
 
         if (!forecastResponse.ok) {
-          throw new Error(
-            "Error al obtener el pronóstico. Inténtalo de nuevo."
-          );
+          throw new Error("Error getting the forecast. Please, try again.");
         }
 
-        const forecastData = await forecastResponse.json();
+        const forecastData: ForecastAPIResponse = await forecastResponse.json();
 
         const groupedByDay: Record<string, { temp: number }[]> =
           forecastData.list.reduce((acc, item) => {
@@ -115,7 +131,7 @@ const useWeather = (): UseWeatherReturn => {
         if (err instanceof Error) {
           setError(err.message);
         } else {
-          setError("Ha ocurrido un error desconocido.");
+          setError("An unknown error has ocurred.");
         }
       }
     },
