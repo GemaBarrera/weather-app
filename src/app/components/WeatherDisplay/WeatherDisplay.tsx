@@ -33,7 +33,7 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
   description,
   icon,
 }) => {
-  const iconUrl = `http://openweathermap.org/img/wn/${icon}@4x.png`;
+  const iconUrl = `https://openweathermap.org/img/wn/${icon}@4x.png`;
 
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const isFavorite = favorites.some((fav) => fav.name === city);

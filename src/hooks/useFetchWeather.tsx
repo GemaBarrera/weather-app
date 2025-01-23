@@ -60,7 +60,7 @@ const useWeather = (): UseWeatherReturn => {
 
       try {
         const response = await fetch(
-          `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
         );
 
         if (!response.ok) {
@@ -83,7 +83,7 @@ const useWeather = (): UseWeatherReturn => {
         });
 
         const forecastResponse = await fetch(
-          `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`
+          `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${API_KEY}`
         );
 
         if (!forecastResponse.ok) {

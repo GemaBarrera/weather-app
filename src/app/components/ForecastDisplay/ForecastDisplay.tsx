@@ -25,7 +25,7 @@ const ForecastDisplay: React.FC<ForecastDisplayProps> = ({ forecast }) => {
       {forecast.map((day, index) => (
         <Day key={`day-${index}`}>
           <WeatherIcon
-            src={`http://openweathermap.org/img/wn/${day.icon}@2x.png`}
+            src={`https://openweathermap.org/img/wn/${day.icon}@2x.png`}
             alt={day.description}
           />
           <h3>{day.day}</h3>
