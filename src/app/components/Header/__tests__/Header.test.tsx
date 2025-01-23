@@ -1,9 +1,9 @@
+import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import "@testing-library/jest-dom";
 import "jest-styled-components";
-import Header from "../Header";
 import { usePathname } from "next/navigation";
+import Header from "../Header";
 
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(),
