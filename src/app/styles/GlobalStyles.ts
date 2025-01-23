@@ -33,6 +33,4 @@ export const GlobalStyles = createGlobalStyle`
   p {
     fot-size: 16px;
   }
-
-
 `;
