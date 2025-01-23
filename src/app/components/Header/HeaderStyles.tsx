@@ -9,7 +9,7 @@ export const HeaderContainer = styled.header`
   align-items: center;
   padding: 20px;
   background-color: #50a4ad;
-  color: white;
+  color: #f0f0f0;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
 `;
@@ -32,12 +32,13 @@ export const Nav = styled.nav`
   gap: 20px;
 `;
 
-export const NavLink = styled(Link)`
+export const NavLink = styled(Link)<{ $isSelected: boolean }>`
   text-decoration: none;
-  color: white;
+  color: #f0f0f0;
   font-size: 18px;
+  opacity: ${(props) => (props.$isSelected ? 1 : 0.6)};
 
   &:hover {
-    text-decoration: underline;
+    opacity: 1;
   }
 `;
