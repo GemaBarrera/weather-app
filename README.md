@@ -100,9 +100,9 @@ npm run test:watch
 
 ## 🌐 Deployment
 
-The app is deployed on [Vercel](https://vercel.com/), offering serverless SSR and SSG out of the box.
+The app is deployed on [Vercel](https://vercel.com/).
 
-Visit the live app: [Weather App on Vercel](#)
+Visit the live app: [Weather App on Vercel](https://weather-app-phi-mauve-67.vercel.app/).
 
 ## 📂 Project Structure
 
