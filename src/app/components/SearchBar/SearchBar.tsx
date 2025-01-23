@@ -67,7 +67,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
       <InputWrapper>
         <Input
           type="text"
-          placeholder="Escribe una ciudad..."
+          placeholder="Search city"
           value={query}
           onChange={handleInputChange}
           onClick={() => setQuery("")}

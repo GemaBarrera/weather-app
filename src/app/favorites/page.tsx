@@ -58,7 +58,7 @@ const FavoritesPage = () => {
           {weather ? (
             <FavoriteCard $isVisible={isVisible} city={weather.name} />
           ) : (
-            <p>Añade alguna ciudad a favoritos para tenerla bien a mano.</p>
+            <p>Add some cities to your favorites.</p>
           )}
         </CardWrapper>
       </Container>
