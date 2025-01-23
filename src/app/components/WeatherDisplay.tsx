@@ -1,6 +1,9 @@
 import styled from "styled-components";
+import { useFavorites } from "../context/FavoritesContext";
+import { FavoriteIcon } from "../components";
 
 const Container = styled.div`
+  position: relative;
   display: flex;
   width: 100%;
   background-color: #0d2242;
@@ -8,18 +11,21 @@ const Container = styled.div`
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 
 const TemperatureWrapper = styled.div`
-  width: fit-content;
+  width: 50%;
   text-align: left;
 `;
 
 const IconWrapper = styled.div`
   display: flex;
-  width: 60%;
+  width: 50%;
   align-items: center;
   justify-content: flex-end;
 `;
@@ -82,6 +88,17 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
 }) => {
   const iconUrl = `http://openweathermap.org/img/wn/${icon}@4x.png`;
 
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
+  const isFavorite = favorites.some((fav) => fav.name === city);
+
+  const onToggle = () => {
+    if (isFavorite) {
+      removeFavorite(city);
+    } else {
+      addFavorite(city);
+    }
+  };
+
   return (
     <Container>
       <TemperatureWrapper>
@@ -91,12 +108,13 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
         <WeatherDetails>
           <p>{Math.round(maxTemperature)}°</p>
           <p id="min">{Math.round(minTemperature)}°</p>
-          <p id="humidity">Humedad: {humidity}%</p>
+          <p id="humidity">Humidity: {humidity}%</p>
         </WeatherDetails>
       </TemperatureWrapper>
       <IconWrapper>
         <WeatherIcon src={iconUrl} alt={description} />
       </IconWrapper>
+      <FavoriteIcon isFavorite={isFavorite} onToggle={onToggle} />
     </Container>
   );
 };
