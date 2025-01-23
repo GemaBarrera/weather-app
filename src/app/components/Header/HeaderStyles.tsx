@@ -37,8 +37,10 @@ export const NavLink = styled(Link)<{ $isSelected: boolean }>`
   color: #f0f0f0;
   font-size: 18px;
   opacity: ${(props) => (props.$isSelected ? 1 : 0.6)};
+  transition: opacity 0.3s ease;
 
   &:hover {
+    text-decoration: underline;
     opacity: 1;
   }
 `;
