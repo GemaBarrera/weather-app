@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "../../styles/theme";
 
 export const Container = styled.div`
   display: flex;
@@ -20,13 +21,13 @@ export const Day = styled.div`
   margin-top: 10px;
 
   h3 {
-    color: #50a4ad;
+    color: ${theme.colors.lightBlue};
     font-size: 18px;
     margin-bottom: 5px;
   }
 
   p {
-    color: #f0f0f0;
+    color: ${theme.colors.lightGrey};
     font-size: 16px;
     margin: 0 10px 0;
   }

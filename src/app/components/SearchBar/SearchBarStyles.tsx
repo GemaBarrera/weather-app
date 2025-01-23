@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "../../styles/theme";
 
 export const Container = styled.div`
   width: 80%;
@@ -21,9 +22,9 @@ export const Input = styled.input`
   all: unset;
   flex: 1;
   padding: 10px;
-  color: #0d2242;
+  color: ${theme.colors.darkBlue};
   font-size: 16px;
-  border-bottom: 1px solid #0d2242;
+  border-bottom: 1px solid ${theme.colors.darkBlue};
   padding: 6px;
   outline: none;
 `;
@@ -31,14 +32,14 @@ export const Input = styled.input`
 export const Button = styled.button`
   padding: 10px;
   font-size: 16px;
-  color: white;
-  background-color: #0d2242;
+  color: ${theme.colors.lightGrey};
+  background-color: ${theme.colors.darkBlue};
   border: none;
   border-radius: 5px;
   cursor: pointer;
 
   &:hover {
-    background-color: #56647c;
+    background-color: ${theme.colors.darkGrey};
   }
 
   &:disabled {
@@ -49,7 +50,7 @@ export const Button = styled.button`
 
 export const SuggestionsList = styled.ul`
   list-style: none;
-  background-color: #f0f0f0;
+  background-color: ${theme.colors.lightGrey};
   margin: 40px 0 0;
   padding: 0;
   width: 100%;
@@ -64,7 +65,7 @@ export const SuggestionItem = styled.li`
   cursor: pointer;
 
   &:hover {
-    background-color: #56647c;
-    color: #f0f0f0;
+    background-color: ${theme.colors.darkGrey};
+    color: ${theme.colors.lightGrey};
   }
 `;

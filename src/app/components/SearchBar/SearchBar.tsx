@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import {
   Button,
   Container,
@@ -26,7 +26,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
 
   const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHERMAP_API_KEY;
 
-  const fetchSuggestions = async (value: string) => {
+  const fetchSuggestions = useCallback(async (value: string) => {
     if (!value) {
       setSuggestions([]);
       return;
@@ -41,13 +41,16 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     } catch (error) {
       console.error("Error fetching suggestions:", error);
     }
-  };
+  }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setQuery(value);
-    fetchSuggestions(value);
-  };
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setQuery(value);
+      fetchSuggestions(value);
+    },
+    [fetchSuggestions]
+  );
 
   const handleSuggestionClick = (city: string) => {
     setQuery(city);
@@ -56,23 +59,28 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
     setSuggestions([]);
   };
 
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     if (selectedCity || query.trim()) {
       onSearch(selectedCity || query.trim());
     }
-  };
+  }, [selectedCity, query, onSearch]);
 
   return (
     <Container>
       <InputWrapper>
         <Input
+          data-testid="search-input"
           type="text"
           placeholder="Search city"
           value={query}
           onChange={handleInputChange}
           onClick={() => setQuery("")}
         />
-        <Button onClick={handleSearch} disabled={!query.trim()}>
+        <Button
+          data-testid="search-button"
+          onClick={handleSearch}
+          disabled={!query.trim()}
+        >
           Buscar
         </Button>
       </InputWrapper>
@@ -80,6 +88,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         <SuggestionsList>
           {suggestions.map((suggestion, index) => (
             <SuggestionItem
+              data-testid={`suggestion-${index}`}
               key={index}
               onClick={() =>
                 handleSuggestionClick(

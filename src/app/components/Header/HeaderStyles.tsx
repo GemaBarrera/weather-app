@@ -1,15 +1,16 @@
 "use client";
 
-import styled from "styled-components";
 import Link from "next/link";
+import styled from "styled-components";
+import theme from "../../styles/theme";
 
 export const HeaderContainer = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: #50a4ad;
-  color: #f0f0f0;
+  background-color: ${theme.colors.lightBlue};
+  color: ${theme.colors.lightGrey};
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
 `;
@@ -34,7 +35,7 @@ export const Nav = styled.nav`
 
 export const NavLink = styled(Link)<{ $isSelected: boolean }>`
   text-decoration: none;
-  color: #f0f0f0;
+  color: ${theme.colors.lightGrey};
   font-size: 18px;
   opacity: ${(props) => (props.$isSelected ? 1 : 0.6)};
   transition: opacity 0.3s ease;

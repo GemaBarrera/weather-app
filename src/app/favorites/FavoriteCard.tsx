@@ -4,13 +4,14 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 import { WeatherDisplay } from "../components";
 import useFetchWeather from "../hooks/useFetchWeather";
+import theme from "../styles/theme";
 
 const Card = styled.div<{ $isVisible: boolean }>`
   margin: "auto";
   textalign: "center";
   transition: opacity 0.3s ease, transform 0.3s ease;
   opacity: ${(props) => (props.$isVisible ? 1 : 0)};
-  background-color: #56647c;
+  background-color: ${theme.colors.darkGrey};
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 20px;

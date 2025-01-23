@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import theme from "../../styles/theme";
 
 export const Container = styled.div`
   position: relative;
   display: flex;
   width: 100%;
-  background-color: #0d2242;
+  background-color: ${theme.colors.darkBlue};
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
@@ -29,24 +30,24 @@ export const IconWrapper = styled.div`
 `;
 
 export const Day = styled.h3`
-  color: #f0f0f0;
+  color: ${theme.colors.lightGrey};
   font-weight: lighter;
 `;
 
 export const City = styled.h2`
-  color: #50a4ad;
+  color: ${theme.colors.lightBlue};
 `;
 
 export const Temperature = styled.h1`
   font-size: 64px;
-  color: #f0f0f0;
+  color: ${theme.colors.lightGrey};
   margin: 0;
 `;
 
 export const WeatherDetails = styled.div`
   display: flex;
   margin-top: 10px;
-  color: #f0f0f0;
+  color: ${theme.colors.lightGrey};
 
   p {
     margin: 6px 10px 6px 0;
@@ -57,7 +58,7 @@ export const WeatherDetails = styled.div`
   }
 
   #humidity {
-    color: #4e85b0;
+    color: ${theme.colors.lightBlue};
   }
 `;
 

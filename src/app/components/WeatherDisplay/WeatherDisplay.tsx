@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback } from "react";
 import { FavoriteIcon } from "..";
 import { useFavorites } from "../../context/FavoritesContext";
 import {
@@ -37,13 +38,13 @@ const WeatherDisplay: React.FC<WeatherDisplayProps> = ({
   const { favorites, addFavorite, removeFavorite } = useFavorites();
   const isFavorite = favorites.some((fav) => fav.name === city);
 
-  const onToggle = () => {
+  const onToggle = useCallback(() => {
     if (isFavorite) {
       removeFavorite(city);
     } else {
       addFavorite(city);
     }
-  };
+  }, [isFavorite, city, addFavorite, removeFavorite]);
 
   return (
     <Container data-testid="weather-display">
