@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect } from "react";
-import WeatherDisplay from "../components/WeatherDisplay";
-import useFetchWeather from "../hooks/useFetchWeather";
 import styled from "styled-components";
+import { WeatherDisplay } from "../components";
+import useFetchWeather from "../hooks/useFetchWeather";
 
 const Card = styled.div<{ $isVisible: boolean }>`
   margin: "auto";
