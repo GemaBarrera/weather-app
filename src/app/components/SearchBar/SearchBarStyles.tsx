@@ -7,12 +7,14 @@ export const Container = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  padding: 0 10px;
 `;
 
 export const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 `;
 
 export const Input = styled.input`

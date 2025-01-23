@@ -1,3 +1,5 @@
+"use client";
+
 import styled from "styled-components";
 import {
   ErrorMessage,
@@ -9,7 +11,7 @@ import {
 import useFetchWeather from "../hooks/useFetchWeather";
 
 const ToolContainer = styled.div`
-  width: 80%;
+  width: 100%;
   max-width: 600px;
   height: 100vh;
   margin-top: 60px;

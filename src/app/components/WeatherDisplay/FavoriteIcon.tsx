@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import styled from "styled-components";

@@ -1,3 +1,5 @@
+"use client";
+
 import { FavoriteIcon } from "..";
 import { useFavorites } from "../../context/FavoritesContext";
 import {
