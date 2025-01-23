@@ -5,13 +5,21 @@ import Link from "next/link";
 
 export const HeaderContainer = styled.header`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   padding: 20px;
   background-color: #50a4ad;
   color: white;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   flex-wrap: wrap;
+`;
+
+export const HeaderContentWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1500px;
 `;
 
 export const Logo = styled.div`

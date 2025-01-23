@@ -1,13 +1,21 @@
-import { HeaderContainer, Logo, Nav, NavLink } from "./HeaderStyles";
+import {
+  HeaderContainer,
+  HeaderContentWrapper,
+  Logo,
+  Nav,
+  NavLink,
+} from "./HeaderStyles";
 
 const Header = () => {
   return (
     <HeaderContainer>
-      <Logo>Weather App</Logo>
-      <Nav>
-        <NavLink href="/">Home</NavLink>
-        <NavLink href="/favoritos">Favorites</NavLink>
-      </Nav>
+      <HeaderContentWrapper>
+        <Logo>Weather App</Logo>
+        <Nav>
+          <NavLink href="/">Home</NavLink>
+          <NavLink href="/favorites">Favorites</NavLink>
+        </Nav>
+      </HeaderContentWrapper>
     </HeaderContainer>
   );
 };
